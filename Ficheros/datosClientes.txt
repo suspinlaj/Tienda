@@ -1,0 +1,3 @@
+Luis#Fernandez Alcaraz#Madrid#lfa@pmail.com#Elegante#True
+Maria#Huerta Perines#Ceuta#mhp@yaju.es#Simpatica y alta#False
+Bermudo#Kilom Poope#Madrid#bkp@reko.ism#muy joven#True

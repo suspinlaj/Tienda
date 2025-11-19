@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Tienda.PantallaAlta"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Altas">
+
+    <!--  Botones dechera TabBar  -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Clicked="OnClickAnadir"
+            IconImageSource="robot.png"
+            Text="Añadir" />
+
+        <ToolbarItem Clicked="OnClickModificar" Text="Editar" />
+
+        <ToolbarItem Clicked="OnClickBorrar" Text="Borrar" />
+
+        <ToolbarItem Clicked="onClickGuardar" Text="Guardar" />
+
+        <ToolbarItem Clicked="OnClickLimpiar" Text="Limpiar" />
+    </ContentPage.ToolbarItems>
+
+
+    <Grid>
+        <Image Aspect="AspectFill" Source="fondo.jpeg" />
+
+        <Grid ColumnDefinitions="Auto, Auto, Auto">
+
+            <!--  PARTE IZQUIERDA  -->
+            <VerticalStackLayout
+                Grid.Column="0"
+                Padding="30,20,80,0"
+                Spacing="15">
+
+                <Image
+                    x:Name="imgRobot"
+                    HeightRequest="125"
+                    HorizontalOptions="Center"
+                    Source="robot.png" />
+
+                <Border
+                    BackgroundColor="{StaticResource blanquito}"
+                    HeightRequest="55"
+                    Stroke="{StaticResource rosita}"
+                    StrokeShape="RoundRectangle 10"
+                    StrokeThickness="5"
+                    WidthRequest="250">
+
+                    <Label
+                        x:Name="textoRobot"
+                        FontAttributes="Bold"
+                        FontFamily="Arial"
+                        FontSize="15"
+                        HorizontalTextAlignment="Center"
+                        Text="Rellene todos los campos"
+                        TextColor="{StaticResource azulito}"
+                        VerticalTextAlignment="Center" />
+
+                </Border>
+
+                <Label
+                    Padding="0,10,0,0"
+                    FontAttributes="Bold"
+                    FontFamily="Arial"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Text="Clientes"
+                    TextColor="{StaticResource blanquito}"
+                    VerticalTextAlignment="Center" />
+
+                <Border
+                    BackgroundColor="{StaticResource blanquito}"
+                    HeightRequest="190"
+                    Stroke="{StaticResource rosita}"
+                    StrokeShape="RoundRectangle 20"
+                    StrokeThickness="5"
+                    WidthRequest="380">
+
+                    <!--  LIST VIEW DE CLIENTES  -->
+                    <ListView x:Name="ClientesView" ItemSelected="ClientesView_ItemSelected">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="10,10,0,0">
+                                        <Label
+                                            FontFamily="Arial"
+                                            FontSize="16"
+                                            Text="{Binding NombreCompleto}"
+                                            TextColor="{StaticResource azulito}"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+
+
+                </Border>
+
+            </VerticalStackLayout>
+
+
+            <!--  PARTE CENTRO  -->
+            <VerticalStackLayout
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Padding="40,50,0,0"
+                Spacing="15">
+
+                <Grid
+                    ColumnDefinitions="Auto,*"
+                    RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                    RowSpacing="30">
+
+                    <!--  NOMBRE  -->
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Padding="0,10,20,0"
+                        FontAttributes="Bold"
+                        FontFamily="Arial"
+                        FontSize="22"
+                        Text="Nombre:"
+                        TextColor="{StaticResource blanquito}" />
+
+                    <Entry
+                        x:Name="entryNombre"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontFamily="Arial"
+                        FontSize="20"
+                        Placeholder="Nombre"
+                        TextColor="{StaticResource rosita}"
+                        WidthRequest="350" />
+
+                    <!--  APELLIDOS  -->
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Padding="0,10,20,0"
+                        FontAttributes="Bold"
+                        FontFamily="Arial"
+                        FontSize="22"
+                        Text="Apellidos:"
+                        TextColor="{StaticResource blanquito}" />
+
+                    <Entry
+                        x:Name="entryApellidos"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        FontFamily="Arial"
+                        FontSize="20"
+                        Placeholder="Apellidos"
+                        TextColor="{StaticResource rosita}"
+                        WidthRequest="350" />
+
+                    <!--  CIUDAD  -->
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Padding="0,10,20,0"
+                        FontAttributes="Bold"
+                        FontFamily="Arial"
+                        FontSize="22"
+                        Text="Ciudad:"
+                        TextColor="{StaticResource blanquito}" />
+
+                    <Entry
+                        x:Name="entryCiudad"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        FontFamily="Arial"
+                        FontSize="20"
+                        Placeholder="Ciudad"
+                        TextColor="{StaticResource rosita}"
+                        WidthRequest="350" />
+
+                    <!--  CORREO  -->
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Padding="0,10,20,0"
+                        FontAttributes="Bold"
+                        FontFamily="Arial"
+                        FontSize="22"
+                        Text="Correo:"
+                        TextColor="{StaticResource blanquito}" />
+
+                    <Entry
+                        x:Name="entryCorreo"
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        FontFamily="Arial"
+                        FontSize="20"
+                        Placeholder="Correo"
+                        TextColor="{StaticResource rosita}"
+                        WidthRequest="350" />
+
+                    <!--  COMENTARIO  -->
+                    <Label
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Padding="0,10,20,0"
+                        FontAttributes="Bold"
+                        FontFamily="Arial"
+                        FontSize="22"
+                        Text="Comentario:"
+                        TextColor="{StaticResource blanquito}"
+                        VerticalTextAlignment="Start" />
+
+                    <Editor
+                        x:Name="editorComentario"
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        AutoSize="TextChanges"
+                        FontFamily="Arial"
+                        FontSize="20"
+                        HeightRequest="100"
+                        MaxLength="100"
+                        Placeholder="Introduzca un comentario"
+                        TextColor="{StaticResource rosita}"
+                        WidthRequest="350" />
+
+                </Grid>
+
+            </VerticalStackLayout>
+
+            <!--  PARTE DERECHA  -->
+
+            <VerticalStackLayout
+                Grid.Column="3"
+                Padding="450,180,0,0"
+                HorizontalOptions="End"
+                Spacing="20">
+
+                <Image
+                    x:Name="imgVip"
+                    HeightRequest="70"
+                    Source="novipimg.png"
+                    WidthRequest="70" />
+
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="Arial"
+                        FontSize="19"
+                        Text="VIP"
+                        TextColor="{StaticResource blanquito}"
+                        VerticalTextAlignment="Center" />
+
+                    <CheckBox
+                        x:Name="chkVip"
+                        CheckedChanged="ImgVipCheckedChanged"
+                        HeightRequest="40"
+                        WidthRequest="40"
+                        Color="{StaticResource rosita}" />
+
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Tienda.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Grid>
+        <Image Aspect="AspectFill" Source="fondoportada.jpg" />
+
+        <Label
+            x:Name="FechaHoraLabel"
+            FontFamily="Arial"
+            FontAttributes="Bold"
+            TextColor="{StaticResource blanquito}"
+            HorizontalTextAlignment="End"
+            VerticalTextAlignment="End"
+            Margin="10"/>
+    </Grid>
+</ContentPage>
