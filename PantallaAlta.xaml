@@ -118,97 +118,64 @@
                     <Label
                         Grid.Row="0"
                         Grid.Column="0"
-                        Padding="0,10,20,0"
-                        FontAttributes="Bold"
-                        FontFamily="Arial"
-                        FontSize="22"
                         Text="Nombre:"
-                        TextColor="{StaticResource blanquito}" />
+                        Style="{StaticResource LabelAltaTitulo}" />
 
                     <Entry
                         x:Name="entryNombre"
                         Grid.Row="0"
                         Grid.Column="1"
-                        FontFamily="Arial"
-                        FontSize="20"
                         Placeholder="Nombre"
-                        TextColor="{StaticResource rosita}"
-                        WidthRequest="350" />
+                        Style="{StaticResource EntrysAlta}"/>
 
                     <!--  APELLIDOS  -->
                     <Label
                         Grid.Row="1"
                         Grid.Column="0"
-                        Padding="0,10,20,0"
-                        FontAttributes="Bold"
-                        FontFamily="Arial"
-                        FontSize="22"
                         Text="Apellidos:"
-                        TextColor="{StaticResource blanquito}" />
+                        Style="{StaticResource LabelAltaTitulo}"/>
 
                     <Entry
                         x:Name="entryApellidos"
                         Grid.Row="1"
                         Grid.Column="1"
-                        FontFamily="Arial"
-                        FontSize="20"
                         Placeholder="Apellidos"
-                        TextColor="{StaticResource rosita}"
-                        WidthRequest="350" />
+                        Style="{StaticResource EntrysAlta}"/>
 
                     <!--  CIUDAD  -->
                     <Label
                         Grid.Row="2"
                         Grid.Column="0"
-                        Padding="0,10,20,0"
-                        FontAttributes="Bold"
-                        FontFamily="Arial"
-                        FontSize="22"
                         Text="Ciudad:"
-                        TextColor="{StaticResource blanquito}" />
+                        Style="{StaticResource LabelAltaTitulo}"/>
 
                     <Entry
                         x:Name="entryCiudad"
                         Grid.Row="2"
                         Grid.Column="1"
-                        FontFamily="Arial"
-                        FontSize="20"
                         Placeholder="Ciudad"
-                        TextColor="{StaticResource rosita}"
-                        WidthRequest="350" />
+                        Style="{StaticResource EntrysAlta}"/>
 
                     <!--  CORREO  -->
                     <Label
                         Grid.Row="3"
                         Grid.Column="0"
-                        Padding="0,10,20,0"
-                        FontAttributes="Bold"
-                        FontFamily="Arial"
-                        FontSize="22"
                         Text="Correo:"
-                        TextColor="{StaticResource blanquito}" />
+                        Style="{StaticResource LabelAltaTitulo}"/>
 
                     <Entry
                         x:Name="entryCorreo"
                         Grid.Row="3"
                         Grid.Column="1"
-                        FontFamily="Arial"
-                        FontSize="20"
                         Placeholder="Correo"
-                        TextColor="{StaticResource rosita}"
-                        WidthRequest="350" />
+                        Style="{StaticResource EntrysAlta}"/>
 
                     <!--  COMENTARIO  -->
                     <Label
                         Grid.Row="4"
                         Grid.Column="0"
-                        Padding="0,10,20,0"
-                        FontAttributes="Bold"
-                        FontFamily="Arial"
-                        FontSize="22"
                         Text="Comentario:"
-                        TextColor="{StaticResource blanquito}"
-                        VerticalTextAlignment="Start" />
+                        Style="{StaticResource LabelAltaTitulo}"/>
 
                     <Editor
                         x:Name="editorComentario"

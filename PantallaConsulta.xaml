@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Tienda.PantallaConsulta"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Consulta">
+
+    <Grid>
+        <Image Aspect="AspectFill" Source="fondo.jpeg" />
+
+       
+        <Grid Padding="0,40,0,0"
+              ColumnDefinitions="*,*"
+              RowDefinitions="auto, auto, *">
+
+            <!-- Pickers -->
+            <Picker
+                x:Name="pickerCiudades"
+                Title="Seleccionar Ciudad"
+                Grid.Row="0"
+                Grid.Column="0"
+                ItemsSource="{Binding Ciudades}" />
+
+            <Picker
+                x:Name="pickerVip"
+                Title="Vip / No Vip"
+                Grid.Row="0"
+                Grid.Column="1"
+                ItemsSource="{Binding Vip}" />
+
+            <!-- Encabezados -->
+            <Grid Grid.Row="1" Grid.ColumnSpan="2"
+                  Padding="0,50,0,0"
+                  ColumnDefinitions="*,*,*,*,*">
+
+                <Label Grid.Column="0" Text="Apellidos"
+                       Style="{StaticResource LabelConsultaTitulo}"/>
+
+                <Label Grid.Column="1" Text="Nombre"
+                       Style="{StaticResource LabelConsultaTitulo}"/>
+
+                <Label Grid.Column="2" Text="Ciudad"
+                       Style="{StaticResource LabelConsultaTitulo}"/>
+
+                <Label Grid.Column="3" Text="Correo"
+                       Style="{StaticResource LabelConsultaTitulo}"/>
+
+                <Label Grid.Column="4" Text="Vip"
+                       Style="{StaticResource LabelConsultaTitulo}"/>
+            </Grid>
+
+            <!-- Datos lista clienes -->
+            <CollectionView
+                x:Name="collectionClientes"
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Margin="0,20,0,0"
+                ItemsSource="{Binding ListaClientes}">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="0,10,0,10"
+                              ColumnDefinitions="*,*,*,*,*">
+
+                            <Label Grid.Column="0"
+                                   Text="{Binding Apellidos}"
+                                   Style="{StaticResource LabelConsultaTexto}"/>
+
+                            <Label Grid.Column="1"
+                                   Text="{Binding Nombre}"
+                                   Style="{StaticResource LabelConsultaTexto}"/>
+
+                            <Label Grid.Column="2"
+                                   Text="{Binding Ciudad}"
+                                   Style="{StaticResource LabelConsultaTexto}"/>
+
+                            <Label Grid.Column="3"
+                                   Text="{Binding Correo}"
+                                   Style="{StaticResource LabelConsultaTexto}"/>
+
+                            <Label Grid.Column="4"
+                                   Text="{Binding VipTexto}"
+                                   Style="{StaticResource LabelConsultaTexto}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+    </Grid>
+</ContentPage>

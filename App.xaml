@@ -1,14 +1,62 @@
-﻿<?xml version = "1.0" encoding = "UTF-8" ?>
-<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Tienda"
-             x:Class="Tienda.App">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Application
+    x:Class="Tienda.App"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Tienda">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <!-- Titulos Alta -->
+            <Style TargetType="Label" x:Key="LabelAltaTitulo">
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Padding" Value="0,10,20,0" />
+                <Setter Property="TextColor" Value="{StaticResource blanquito}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+            </Style>
+
+            <!-- Entry Alta -->
+            <Style TargetType="Label" x:Key="EntrysAlta">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="TextColor" Value="{StaticResource rosita}" />
+                <Setter Property="WidthRequest" Value="350" />
+            </Style>
+            
+            
+            <!-- Picker Consulta -->
+            <Style TargetType="Picker">
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="BackgroundColor" Value="{StaticResource blanquito}" />
+                <Setter Property="Background" Value="{StaticResource rosita}" />
+                <Setter Property="TextColor" Value="{StaticResource blanquito}" />
+                <Setter Property="TitleColor" Value="{StaticResource blanquito}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+
+            <!-- Titulos Consulta -->
+            <Style TargetType="Label" x:Key="LabelConsultaTitulo">
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="TextColor" Value="{StaticResource rosita}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            
+            <!-- Texto Clientes Consulta-->
+            <Style TargetType="Label" x:Key="LabelConsultaTexto">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="TextColor" Value="{StaticResource blanquito}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

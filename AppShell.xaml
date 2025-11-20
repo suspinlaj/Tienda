@@ -5,20 +5,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Tienda"
     Title="Tienda"
-    
     FlyoutBehavior="Disabled"
     Shell.BackgroundColor="{StaticResource azulito}"
     Shell.TabBarBackgroundColor="{StaticResource blanquito}"
     Shell.TabBarForegroundColor="{StaticResource azulito}"
     Shell.TabBarTitleColor="{StaticResource rosita}"
     Shell.TabBarUnselectedColor="{StaticResource azulito}"
-    Shell.TitleColor="{StaticResource rosita}" >
+    Shell.TitleColor="{StaticResource rosita}">
 
     <TabBar>
         <ShellContent Title="Inicio" ContentTemplate="{DataTemplate local:MainPage}" />
-       <ShellContent Title="Altas" ContentTemplate="{DataTemplate local:PantallaAlta}" />
-       <!-- <ShellContent Title="Consulta Lista" ContentTemplate="{DataTemplate local:PantallaConsulta}" />
-        <ShellContent Title="Consulta Individual con Búsqueda" ContentTemplate="{DataTemplate local:PantallaConsultaIndividual}" />-->
+        <ShellContent Title="Altas" ContentTemplate="{DataTemplate local:PantallaAlta}" />
+        <ShellContent Title="Consulta Lista" ContentTemplate="{DataTemplate local:PantallaConsulta}" />
+        <ShellContent Title="Consulta Individual con Búsqueda" ContentTemplate="{DataTemplate local:PantallaConsultaIndividual}" />
     </TabBar>
 
 </Shell>

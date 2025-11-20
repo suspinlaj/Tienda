@@ -17,8 +17,11 @@ namespace Tienda.Modelos
         public string Comentario { get; set; }
         public bool Vip { get; set; }
 
+        // cambiar True o False por texto bien
+        public string VipTexto => Vip ? "Vip" : "No Vip";
+
         //Nombre + Apellido para mostrar en el ListView
-        public string NombreCompleto => $"{Nombre} {Apellidos}";
+        public string NombreCompleto => $"{Apellidos} {Nombre}";
 
         public override bool Equals(object? obj)
         {
@@ -26,7 +29,4 @@ namespace Tienda.Modelos
                    Correo == cliente.Correo;
         }
     }
-
-
-
 }

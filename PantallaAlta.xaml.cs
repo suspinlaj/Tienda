@@ -16,6 +16,13 @@ public partial class PantallaAlta : ContentPage
         CargarClientes();
     }
 
+    // Para que al cambiar de pestaña y volver, salga todo limpio
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        ResetearPagina();
+    }
+
     private void CargarClientes()
     {
             //Cargar clientes en la List View
@@ -81,12 +88,7 @@ public partial class PantallaAlta : ContentPage
     }
 
 
-    // Para que al cambiar de pestaña y volver, salga todo limpio
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
-        ResetearPagina();
-    }
+    
 
     private void ResetearPagina()
     {
@@ -143,8 +145,8 @@ public partial class PantallaAlta : ContentPage
         {
             if (ComprobarEntrys())
             {
-                imgRobot.Source = "imgmal.png";
-                textoRobot.Text = "Error. Debe rellenar\ntodos los campos";
+                imgRobot.Source = "imgprohibido.png";
+                textoRobot.Text = "Debe rellenar\ntodos los campos";
             }
             else
             {
@@ -205,21 +207,32 @@ public partial class PantallaAlta : ContentPage
         }
     }
 
-    private void OnClickBorrar(object sender, EventArgs e)
+    private async void OnClickBorrar(object sender, EventArgs e)
     {
         try
         {
-            string correo = entryCorreo.Text;
+            bool respuesta = await DisplayAlert("Confirmar borrado", "¿Estás seguro de que deseas borrar este cliente?", "Sí", "No");
 
-            clientesRepositorio.BorrarCliente(correo);
+            if(respuesta)
+            {
+                string correo = entryCorreo.Text;
 
-            // Actualizar ListView
-            ClientesView.ItemsSource = null;
-            ClientesView.ItemsSource = clientesRepositorio.CargarClientes();
+                clientesRepositorio.BorrarCliente(correo);
 
-            imgRobot.Source = "imgbien.png";
-            textoRobot.Text = "Cliente borrado correctamente";
-            ResetearPagina();
+                // Actualizar ListView
+                ClientesView.ItemsSource = null;
+                ClientesView.ItemsSource = clientesRepositorio.CargarClientes();
+
+                imgRobot.Source = "imgbien.png";
+                textoRobot.Text = "Cliente borrado correctamente";
+                ResetearPagina();
+            }else
+            {
+                imgRobot.Source = "imgprohibido.png";
+                textoRobot.Text = "Borrado cancelado";
+            }
+                
+           
         }
         catch (Exception ex)
         {
@@ -235,10 +248,18 @@ public partial class PantallaAlta : ContentPage
 
     private void onClickGuardar(object sender, EventArgs e)
     {
+        if(!ComprobarEntrys())
+        {
             GuardarCliente();
 
             // Actualizar ListView
             ClientesView.ItemsSource = null;
             ClientesView.ItemsSource = clientesRepositorio.CargarClientes();
+        }else
+        {
+            imgRobot.Source = "imgprohibido.png";
+            textoRobot.Text = "Debe rellenar\n los campos primero";
+        }
+           
     }
 }
