@@ -8,12 +8,12 @@
     <Grid>
         <Image Aspect="AspectFill" Source="fondo.jpeg" />
 
-        <Grid RowDefinitions="Auto,Auto,*" ColumnDefinitions="*,Auto">
+        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,*">
 
             <Entry
-                Grid.Row="0" 
-                Grid.ColumnSpan="2"
                 x:Name="entryBuscarCliente"
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
                 Margin="20,20,20,20"
                 BackgroundColor="{StaticResource rosita}"
                 FontFamily="Arial"
@@ -21,59 +21,85 @@
                 HeightRequest="10"
                 Placeholder="Buscar Cliente..."
                 PlaceholderColor="{StaticResource blanquito}"
+                TextChanged="OnSearchTextChanged"
                 TextColor="{StaticResource blanquito}"
                 VerticalOptions="Start" />
 
-            <Button Text="Atrás"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    x:Name="btnAtras"
-                    Margin="20,10,0,0"
-                    Clicked="OnClickAtras"
-                    HorizontalOptions="Start"
-                    FontFamily="Arial"
-                    BackgroundColor="{StaticResource blanquito}"
-                    TextColor="{StaticResource rosita}"/>   
+            <Button
+                x:Name="btnAtras"
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="20,10,0,0"
+                BackgroundColor="{StaticResource blanquito}"
+                Clicked="OnClickAtras"
+                FontFamily="Arial"
+                Text="Atrás"
+                TextColor="{StaticResource rosita}"
+                WidthRequest="120" />
 
 
-            <Button Text="Siguiente"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Margin="0,10,20,0"
-                    HorizontalOptions="End"
-                    x:Name="btnSiguiente"
-                    Clicked="OnClickSiguiente"
-                    FontFamily="Arial"
-                    BackgroundColor="{StaticResource blanquito}"
-                    TextColor="{StaticResource rosita}"/>
+            <Button
+                x:Name="btnSiguiente"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0,10,20,0"
+                BackgroundColor="{StaticResource blanquito}"
+                Clicked="OnClickSiguiente"
+                FontFamily="Arial"
+                Text="Siguiente"
+                TextColor="{StaticResource rosita}"
+                WidthRequest="120" />
 
 
             <CollectionView
                 x:Name="collectionClientes"
                 Grid.Row="2"
-                ItemsSource="{Binding ListaClientes}">
-
+                Grid.ColumnSpan="2"
+                HorizontalOptions="Center"
+                SelectionMode="Single" 
+                ItemsSource="{Binding ListaClientes}">  
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="0,40,0,0"
-                              ColumnDefinitions="*" RowDefinitions="*,*,*,*,*" >
+                        <Grid
+                            Padding="0,40,0,20"
+                            ColumnDefinitions="*"
+                            RowDefinitions="*,*,*,*,*,*">
 
-                            <Label Grid.Row="0"
-                                   FontSize="30"
-                                   Text="{Binding Nombre}"
-                                   Style="{StaticResource LabelConsultaTexto}"/>
-                            
-                            <Label Grid.Row="1"
-                                   Text="{Binding Apellidos}"
-                                   Style="{StaticResource LabelConsultaTexto}"/>
-                            
-                            <Label Grid.Row="2"
-                                   Text="{Binding Ciudad}"
-                                   Style="{StaticResource LabelConsultaTexto}"/>
+                            <!-- Para poner el color de fondo si está seleccionado-->
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroupList>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                            </VisualState.Setters>
+                                        </VisualState>
 
-                            <Label Grid.Row="3"
-                                   Text="{Binding Correo}"
-                                   Style="{StaticResource LabelConsultaTexto}"/>
+                                        <VisualState x:Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="#40000000" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateGroupList>
+                            </VisualStateManager.VisualStateGroups>
+                            
+                            <!--  Para poner la imagen en función de si Vip es "true" o "false"  -->
+                            <Image Grid.Row="0" HeightRequest="70" WidthRequest="70">
+                                <Image.Triggers>
+                                    <DataTrigger Binding="{Binding Vip}" TargetType="Image" Value="True">
+                                        <Setter Property="Source" Value="vipimg.png" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Vip}" TargetType="Image" Value="False">
+                                        <Setter Property="Source" Value="novipimg.png" />
+                                    </DataTrigger>
+                                </Image.Triggers>
+                            </Image>
+
+                            <Label Grid.Row="1" FontSize="30" Style="{StaticResource LabelConsultaTexto}" Text="{Binding Nombre}" />
+                            <Label Grid.Row="2" Style="{StaticResource LabelConsultaTexto}" Text="{Binding Apellidos}" />
+                            <Label Grid.Row="3" Style="{StaticResource LabelConsultaTexto}" Text="{Binding Ciudad}" />
+                            <Label Grid.Row="4" Style="{StaticResource LabelConsultaTexto}" Text="{Binding Correo}" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

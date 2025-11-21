@@ -12,10 +12,7 @@ public partial class PantallaConsulta : ContentPage
     public PantallaConsulta()
 	{
 		InitializeComponent();
-        SacarCiudades();
-        SacarVip();
-
-        CargarClientes();
+        
 
         // metodos de los pickers al ser clicados 
         pickerCiudades.SelectedIndexChanged += PickerCiudades_SelectedIndexChanged;
@@ -23,8 +20,26 @@ public partial class PantallaConsulta : ContentPage
 
     }
 
+    // Para que al cambiar de pestaña y volver, salga todo limpio
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        SacarCiudades();
+        SacarVip();
+
+        CargarClientes();
+        ResetearPagina();
+    }
+
+    private void ResetearPagina()
+    {
+        pickerCiudades.SelectedIndex = 0;
+        pickerVip.SelectedIndex = 0;
+    }
+
     private void CargarClientes()
     {
+        collectionClientes.ItemsSource = null;
         List<Cliente> clientes = clientesRepositorio.CargarClientes();
 
         collectionClientes.ItemsSource = clientes;

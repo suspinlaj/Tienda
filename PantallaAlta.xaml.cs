@@ -1,3 +1,4 @@
+
 using Microsoft.Maui.Layouts;
 using Tienda.Excepciones;
 using Tienda.Modelos;
@@ -21,6 +22,18 @@ public partial class PantallaAlta : ContentPage
     {
         base.OnAppearing();
         ResetearPagina();
+    }
+
+    private void ResetearPagina()
+    {
+        entryNombre.Text = "";
+        entryApellidos.Text = "";
+        entryCiudad.Text = "";
+        entryCorreo.Text = "";
+        textoRobot.Text = "Rellene todos los campos";
+        editorComentario.Text = "";
+        chkVip.IsChecked = false;
+        imgRobot.Source = "robot.png";
     }
 
     private void CargarClientes()
@@ -50,10 +63,6 @@ public partial class PantallaAlta : ContentPage
 
                 imgRobot.Source = "imgbien.png";
                 textoRobot.Text = "Cliente añadido correctamente";
-            }else
-            {
-                imgRobot.Source = "imgmal.png";
-                textoRobot.Text = "Error. Ya existe el cliente";
             }
         }
         catch (Exception ex) {
@@ -86,21 +95,7 @@ public partial class PantallaAlta : ContentPage
             textoRobot.Text = "Cliente seleccionado";
 
     }
-
-
     
-
-    private void ResetearPagina()
-    {
-        entryNombre.Text = "";
-        entryApellidos.Text = "";
-        entryCiudad.Text = "";
-        entryCorreo.Text = "";
-        textoRobot.Text = "Rellene todos los campos";
-        editorComentario.Text = "";
-        chkVip.IsChecked = false;
-        imgRobot.Source = "robot.png";
-    }
 
     private void ImgVipCheckedChanged(object sender, CheckedChangedEventArgs e)
     {
@@ -179,26 +174,34 @@ public partial class PantallaAlta : ContentPage
     {
         try
         {
-            // Crear cliente con los datos actuales de los entrys
-            var clienteActualizado = new Cliente
+            if (!ComprobarEntrys())
             {
-                Nombre = entryNombre.Text,
-                Apellidos = entryApellidos.Text,
-                Ciudad = entryCiudad.Text,
-                Correo = entryCorreo.Text,
-                Comentario = editorComentario.Text,
-                Vip = chkVip.IsChecked
-            };
+                // Crear cliente con los datos actuales de los entrys
+                var clienteActualizado = new Cliente
+                {
+                    Nombre = entryNombre.Text,
+                    Apellidos = entryApellidos.Text,
+                    Ciudad = entryCiudad.Text,
+                    Correo = entryCorreo.Text,
+                    Comentario = editorComentario.Text,
+                    Vip = chkVip.IsChecked
+                };
 
-            // Editar usando el correo como pk
-            clientesRepositorio.ModificarCliente(entryCorreo.Text, clienteActualizado);
+                // Editar usando el correo como pk
+                clientesRepositorio.ModificarCliente(entryCorreo.Text, clienteActualizado);
 
-            // Actualizar ListView
-            ClientesView.ItemsSource = null;
-            ClientesView.ItemsSource = clientesRepositorio.CargarClientes();
+                // Actualizar ListView
+                ClientesView.ItemsSource = null;
+                ClientesView.ItemsSource = clientesRepositorio.CargarClientes();
 
-            imgRobot.Source = "imgbien.png";
-            textoRobot.Text = "Cliente modificado correctamente";
+                imgRobot.Source = "imgbien.png";
+                textoRobot.Text = "Cliente modificado correctamente";
+            }
+            else
+            {
+                imgRobot.Source = "imgprohibido.png";
+                textoRobot.Text = "Debe seleccionar un\n usuario primero";
+            }
         }
         catch (Exception ex)
         {
@@ -211,26 +214,35 @@ public partial class PantallaAlta : ContentPage
     {
         try
         {
-            bool respuesta = await DisplayAlert("Confirmar borrado", "¿Estás seguro de que deseas borrar este cliente?", "Sí", "No");
-
-            if(respuesta)
+            if(!ComprobarEntrys())
             {
-                string correo = entryCorreo.Text;
+                bool respuesta = await DisplayAlert("Confirmar borrado", "¿Estás seguro de que deseas borrar este cliente?", "Sí", "No");
 
-                clientesRepositorio.BorrarCliente(correo);
+                if (respuesta)
+                {
+                    string correo = entryCorreo.Text;
 
-                // Actualizar ListView
-                ClientesView.ItemsSource = null;
-                ClientesView.ItemsSource = clientesRepositorio.CargarClientes();
+                    clientesRepositorio.BorrarCliente(correo);
 
-                imgRobot.Source = "imgbien.png";
-                textoRobot.Text = "Cliente borrado correctamente";
-                ResetearPagina();
+                    // Actualizar ListView
+                    ClientesView.ItemsSource = null;
+                    ClientesView.ItemsSource = clientesRepositorio.CargarClientes();
+
+                    imgRobot.Source = "imgbien.png";
+                    textoRobot.Text = "Cliente borrado correctamente";
+                    ResetearPagina();
+                }
+                else
+                {
+                    imgRobot.Source = "imgprohibido.png";
+                    textoRobot.Text = "Borrado cancelado";
+                }
             }else
             {
                 imgRobot.Source = "imgprohibido.png";
-                textoRobot.Text = "Borrado cancelado";
+                textoRobot.Text = "Debe seleccionar un\n usuario primero";
             }
+            
                 
            
         }
